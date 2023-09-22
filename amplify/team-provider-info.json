@@ -30,11 +30,13 @@
         "tortureserver9ee8d61f": {
           "deploymentBucketName": "amplify-tortureserver-dev-192132-deployment",
           "s3Key": "amplify-builds/tortureserver9ee8d61f-525964515a4d47736972-build.zip"
-        }
+        },
+        "graphQlLambdaAuthorizerb296f26b": {}
       },
       "api": {
         "apiba386392": {},
-        "api9ecb818b": {}
+        "api9ecb818b": {},
+        "tortureserver": {}
       }
     }
   }

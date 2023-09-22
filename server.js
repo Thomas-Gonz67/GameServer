@@ -7,7 +7,7 @@ const { Server } = require("socket.io");
 
 const io = new Server({
     cors: {
-        origin: "https://dev.d50dcphtye9iv.amplifyapp.com"
+        origin: "https://phoneside-7rc4hx4hr-froggychop100-aolcom.vercel.app/"
     }
 });
 
