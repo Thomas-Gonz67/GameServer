@@ -1,17 +1,37 @@
 const express = require('express');
 const app = express();
+
 const http = require('http');
-const server = http.createServer(app);
+var server = http.createServer(app);
 const { Server } = require("socket.io");
+const path = require('path');
 
 
-const io = new Server({
-    cors: {
-        origin: "https://phoneside-7rc4hx4hr-froggychop100-aolcom.vercel.app/"
+const io = new Server(server, {
+    cors: { 
+        origin: "*",
+        methods: ["GET", "POST"],
+        allowedHeaders: ["my-custom-header"],
+        credentials: true
+        
     }
 });
 
+const _dirname = path.dirname("")
+const buildPath = path.join(_dirname, "../Phoneside/phoneside/build");
 
+app.use(express.static(buildPath))
+
+app.get('/*', (req, res) => {
+    res.sendFile(
+        path.join(__dirname, "../Phoneside/phoneside/build/index.html"),
+        function (err) {
+            if (err) {
+                res.status(500).send(err);
+            }
+        }
+    );
+});
 
 var hosts = {};
 const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -28,9 +48,7 @@ const makeRoomCode = () => {
 
 }
 
-app.get('/', (req, res) => {
-    res.send('<h1>Hello world</h1>');
-});
+
 
 
 
@@ -209,5 +227,5 @@ io.on('connection', (socket) => {
 
 
 
-io.listen(3000);
+io.listen(5001);
 
